@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'node:path'
+import * as readline from 'node:readline'
 
 // The built directory structure
 //
@@ -20,6 +21,9 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
   win = new BrowserWindow({
+    autoHideMenuBar: true,
+    width: 1400, 
+    height: 900,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -47,6 +51,18 @@ app.on('window-all-closed', () => {
     app.quit()
     win = null
   }
+})
+
+app.on('ready', () => {
+  console.log("ready")
+  readline.emitKeypressEvents(process.stdin);
+  if(process.stdin.isTTY){
+    process.stdin.setRawMode(true);
+  }
+
+  process.stdin.on("keypress", (str, key) => {
+    console.log(key)
+  })
 })
 
 app.on('activate', () => {
