@@ -1,6 +1,5 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, utilityProcess } from 'electron'
 import path from 'node:path'
-import * as readline from 'node:readline'
 
 // The built directory structure
 //
@@ -43,6 +42,7 @@ function createWindow() {
   }
 }
 
+
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
@@ -55,14 +55,12 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   console.log("ready")
-  readline.emitKeypressEvents(process.stdin);
   if(process.stdin.isTTY){
     process.stdin.setRawMode(true);
   }
-
-  process.stdin.on("keypress", (str, key) => {
-    console.log(key)
-  })
+  
+  
+  
 })
 
 app.on('activate', () => {
@@ -71,6 +69,9 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
+
+  const child = utilityProcess.fork("../app/main.ts")
+
 })
 
 app.whenReady().then(createWindow)
