@@ -31,6 +31,7 @@ const translateShiftNumbers = (number) => {
     return mappings[number].trim()
 }
 
+
 const translateKey = (keys) => {
     let allKeys = Object.getOwnPropertyNames(keys)
 
@@ -58,33 +59,127 @@ const translateKey = (keys) => {
     let isSquareBracketClose = allKeys.includes('SQUARE BRACKET OPEN') //]
     let isQuote = allKeys.includes('QUOTE')
     let isSpace = allKeys.includes('SPACE')
+    let isSemicolon = allKeys.includes('SEMICOLON')
 
     let pressedKey = returnPressedKey(allKeys)
 
-    //If it's just shift + letters
-    if (isShift && pressedKey && isAlpha(pressedKey)){
-        console.log(pressedKey.toUpperCase())
+    //If it's just shift + letters or if it has capslock on
+    if ((isShift || isCaplock) && pressedKey && isAlpha(pressedKey)){
+        return pressedKey.toUpperCase()
     }
     //If it's just normal letters
     if (!isShift && pressedKey && isAlpha(pressedKey)){
-        console.log(pressedKey.toLowerCase())
+        return pressedKey.toLowerCase()
     }
     //If it's shit + a number
     if (isShift && pressedKey && !isAlpha(pressedKey)){
-        console.log(translateShiftNumbers(pressedKey))
+        return translateShiftNumbers(pressedKey)
+    }
+    //Useless keys that won't do anything
+    if (isCtrl || isAlt || isMeta || isTab || isEsc || isUpArrow || isLeftArrow || isRightArrow || isDownArrow || isEnter){
+        return 
     }
     
+    if (isShift && isEquals){
+        return "+"
+    }
 
-    // console.log(pressedKey)
+    if (!isShift && isEquals){
+        return "="
+    }
 
-    // console.log(isAlpha(pressedKey))
-    // console.log(pressedKey + "hereeee")
+    if (isShift && isMinus){
+        return "_"
+    }
 
+    if (!isShift && isMinus){
+        return "-"
+    }
+
+    if (isShift && isSquareBracketOpen){
+        return "}"
+    }
+
+    if (!isShift && isSquareBracketOpen){
+        return "]"
+    }
+
+    if (isShift && isSquareBracketClose){
+        return "{"
+    }
+
+    if (!isShift && isSquareBracketClose){
+        return "["
+    }
+
+    if (isSpace){
+        return " "
+    }
+
+    if (!isShift && isBackSlash){
+        return "\\"
+    }
+
+    if (isShift && isBackSlash){
+        return "|"
+    }
+
+    if (isShift && isQuote){
+        return "\""
+    }
+
+    if (!isShift && isQuote){
+        return "'"
+    }
+
+    if (isShift && isDot){
+        return ">"
+    }
+
+    if (!isShift && isDot){
+        return "."
+    }
+
+    if (isShift && isComma){
+        return "<"
+    }
+    
+    if (!isShift && isComma){
+        return ","
+    }
+
+    if (!isShift && isForwardSlash){
+        return "/"
+    }
+
+    if (isShift && isForwardSlash){
+        return "?"
+    }
+
+    if (isShift && isBacktick){
+        return "`"
+    }
+
+    if (!isShift && isBacktick){
+        return "~"
+    }
+
+    if (isShift && isSemicolon){
+        return ":"
+    }
+
+    if (!isShift && isSemicolon){
+        return ";"
+    }
+
+    if (isBackSpace){
+        return "BACKSPACE"
+    }
 }
 
 const keyTranslator = (keys) => {
     let currentKeys = filterKeys(keys)
-    translateKey(currentKeys)
+    return translateKey(currentKeys)
 }
 
 module.exports = {
