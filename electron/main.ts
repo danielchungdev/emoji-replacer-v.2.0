@@ -1,5 +1,14 @@
-import { app, BrowserWindow, utilityProcess } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
+import { PythonShell } from 'python-shell'
+
+const sqlite3 = require('sqlite3')
+const db = new sqlite3.Database('./db/emojireplacer.db')
+
+db.serialize(() => {
+  db.run("CREATE TABLE IF NOT EXISTS Settings (name, value)");
+  db.run("CREATE TABLE IF NOT EXISTS Emojis (keyword, emoji)");
+});
 
 // The built directory structure
 //
@@ -29,6 +38,8 @@ function createWindow() {
     },
   })
 
+  win.webContents.openDevTools()
+
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
@@ -42,6 +53,9 @@ function createWindow() {
   }
 }
 
+if(process.argv[1] === '--squirrel-firstrun'){
+  //Instlal python pip packages.
+}
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -58,10 +72,29 @@ app.on('ready', () => {
   if(process.stdin.isTTY){
     process.stdin.setRawMode(true);
   }
+
+  let pyshell = new PythonShell('./app/app.py')
   
-  
+  pyshell.on('message', function(message){
+    console.log(message)
+  })
+
+  pyshell.end(function(err){
+    if (err){
+      throw err;
+    }
+    console.log("finished")
+  })
   
 })
+
+ipcMain.handle('db-query', async (event, sqlQuery) => {
+  return new Promise(res => {
+      db.all(sqlQuery, (err: any, rows: unknown) => {
+        res(rows);
+      });
+  });
+});
 
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
@@ -70,7 +103,6 @@ app.on('activate', () => {
     createWindow()
   }
 
-  const child = utilityProcess.fork("../app/main.ts")
 
 })
 

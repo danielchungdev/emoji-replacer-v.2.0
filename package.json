@@ -7,16 +7,15 @@
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "app": "node ./app/main.js"
+    "app": "py ./app/app.py"
   },
   "dependencies": {
-    "node-global-key-listener": "^0.1.1",
+    "@electron/rebuild": "^3.4.0",
+    "@heroicons/react": "^2.0.18",
+    "python-shell": "^5.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "imports": {
-    "#appUtils/*": "./app/utils/*",
-    "#appConfig/*": "./app/config/*"
+    "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",

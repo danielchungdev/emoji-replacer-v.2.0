@@ -1,6 +1,19 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+.main-container{
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5%;
+} 
+
+.main-content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  place-items: center;
+  grid-row-gap: 40px;
+}
+
+.main-content::after{
+  content: "";
+  flex: auto;
 }

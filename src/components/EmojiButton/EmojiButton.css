@@ -1,0 +1,64 @@
+.emoji-button-title{
+    color: #F5F5F5;
+    font-size: 120%;
+    margin: 0;
+    padding: 0;
+}
+
+.emoji-button-container{
+    position: relative;
+    display: grid;
+    place-content: center;
+    height: 200px;
+    width: 200px;
+    background-color: #131313;
+    text-align: center;
+    border-radius: 7px;
+    transition: all 0.5s ease-in-out;
+}
+
+.emoji-button-container:hover{
+    background-color: #F5F5F5;
+    cursor: pointer;
+}
+
+.emoji-button-container:hover .emoji-button-title{
+    color: #131313;
+}
+
+.emoji-button-icon{
+    font-size: 200%;
+    margin: 0;
+    padding: 0;    
+}
+
+.emoji-button-content{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.x{
+    display: none;
+    background-color: rgb(252, 99, 99);
+    border-radius: 40px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.trash-icon{
+    width: 70%;
+    margin: auto;
+}
+
+.emoji-button-container:hover .x{
+    display: grid;
+    place-content: center;
+}
+
+.x:hover{
+    background-color: rgb(250, 39, 39);
+}

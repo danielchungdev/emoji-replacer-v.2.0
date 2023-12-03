@@ -1,0 +1,13 @@
+
+.navbar{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: end;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.navbar-option{
+    width: 25px;
+}
