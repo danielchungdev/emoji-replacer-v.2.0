@@ -1,7 +1,7 @@
 import './App.css'
-import { ActionButton } from './components/ActionButton';
-import { EmojiButton } from './components/EmojiButton';
-import { Navbar } from './components/Navbar';
+import { ActionButton } from '@components/ActionButton';
+import { EmojiButton } from '@components/EmojiButton';
+import { Navbar } from '@components/Navbar';
 
 const App = (): JSX.Element => {
 
