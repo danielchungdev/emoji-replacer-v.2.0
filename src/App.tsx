@@ -24,6 +24,19 @@ const App = (): JSX.Element => {
           <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
           <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
           <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+          <EmojiButton emoji='🔥' name='fire' delimiter=':'/>
+
         </div>
       </div>
     </div>

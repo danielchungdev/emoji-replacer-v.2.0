@@ -6,12 +6,25 @@
   margin-bottom: 2.5%;
 } 
 
+/*Works good with scrolling donwards*/
+
 .main-content{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
   place-items: center;
   grid-row-gap: 40px;
 }
+
+/* When we want to follow original idea of scrolling sideways*/
+/* .main-content{
+  display: flex;
+  max-height: 80vh;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 25px;
+  overflow-y: scroll;
+  scroll-direction: horizontal;
+} */
 
 .main-content::after{
   content: "";
