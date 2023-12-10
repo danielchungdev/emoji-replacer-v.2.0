@@ -31,9 +31,6 @@ def on_press(key):
     delimiter = get_delimiter.get_delimiter()
     key_str = str(key).replace('\'', '')
 
-    print(key_str)
-    sys.stdout.flush()
-
     if LISTENING: 
         if (key == Key.enter):
             LISTENING = False
