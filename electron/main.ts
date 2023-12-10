@@ -69,7 +69,7 @@ app.on('window-all-closed', () => {
   }
 })
 
-app.on('ready', () => {
+app.on('ready', async () => {
   console.log("ready")
   if(process.stdin.isTTY){
     process.stdin.setRawMode(true);

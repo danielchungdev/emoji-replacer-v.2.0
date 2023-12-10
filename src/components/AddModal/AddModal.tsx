@@ -20,12 +20,14 @@ export const AddModal: FC<Props> = ({ closeModal }) => {
         <div className="action-modal-content">
             <h2>Add Emoji</h2>
             <div className="input-modal">
-                <input className="action-inputs" value={emoji} name="emoji" onChange={(e) => handleInputChange(e)} />
-                <input className="action-inputs" value={shortcut} name="shortcut" onChange={(e) => handleInputChange(e)} />
+                <input className="action-inputs emoji-input" style={{ width: `${emoji.length}ch` }} value={emoji} name="emoji" onChange={(e) => handleInputChange(e)} maxLength={11}/>
+                <div className="shortcut-div">
+                    <span>:</span><input className="action-inputs shortcut-input" style={{ width: `${shortcut.length}ch` }} value={shortcut} name="shortcut" onChange={(e) => handleInputChange(e)} maxLength={11}/><span>:</span>
+                </div>
             </div>
             <div className="action-modal-buttons">
                 <button className="modal-button" onClick={closeModal}>Cancel</button>
-                <button className="modal-button">Add</button>
+                <button className="modal-button" >Add</button>
             </div>
         </div>
     )

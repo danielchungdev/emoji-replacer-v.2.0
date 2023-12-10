@@ -8,15 +8,35 @@
 
 .action-inputs {
     background-color: #F5F5F5;
-    border: none;
+    border: 1px rgb(41, 41, 41) solid;
+    border-radius: 10px;
     max-width: 80%;
+    min-width: 100px;
     width: auto;
     color: black;
     font-size: 3rem;
-    padding: 5px;
+    padding: 10px;
     display: block;
-    margin: auto;
     text-align: center;
+}
+
+.shortcut-input{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.emoji-input{
+    margin: 10px auto;
+}
+
+.shortcut-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shortcut-div span{
+    font-size: 2rem;
 }
 
 .action-inputs:focus{
@@ -45,5 +65,4 @@
 .modal-button:hover{
     background-color: rgba(201, 200, 200, 0.418);
     color: #474747;
-
 }

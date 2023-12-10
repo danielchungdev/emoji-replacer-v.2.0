@@ -16,7 +16,13 @@ def delete_keyword(candidate_keyword):
 def past_emoji(emoji, candidate_keyword):
     delete_keyword(candidate_keyword)
     pyperclip.copy(emoji)
-    pyautogui.hotkey('ctrl', 'v')
+    if sys.platform == "win32":
+        pyautogui.hotkey('ctrl', 'v')
+    if sys.platform == "darwin":
+        pyautogui.keyDown('command')
+        pyautogui.keyDown('v')
+        pyautogui.keyUp('command')
+        pyautogui.keyUp('v')
 
 def on_press(key):
     global TYPED_KEYS
@@ -24,6 +30,9 @@ def on_press(key):
 
     delimiter = get_delimiter.get_delimiter()
     key_str = str(key).replace('\'', '')
+
+    print(key_str)
+    sys.stdout.flush()
 
     if LISTENING: 
         if (key == Key.enter):
