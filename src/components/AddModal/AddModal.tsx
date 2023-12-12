@@ -18,7 +18,7 @@ export const AddModal: FC<Props> = ({ closeModal }) => {
 
     return (
         <div className="action-modal-content">
-            <h2>Add Emoji</h2>
+            <h1 className="modal-title">Add Emoji</h1>
             <div className="input-modal">
                 <input className="action-inputs emoji-input" style={{ width: `${emoji.length}ch` }} value={emoji} name="emoji" onChange={(e) => handleInputChange(e)} maxLength={11}/>
                 <div className="shortcut-div">

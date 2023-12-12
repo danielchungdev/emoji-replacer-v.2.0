@@ -5,11 +5,15 @@ import { Modal } from "@components/Modal";
 import { AddModal } from "@components/AddModal/AddModal";
 import { useState, useEffect } from "react";
 import { EmojisObjects } from "./types";
+import { useOpen } from "@hooks/useOpen";
 
 export const EmojiGrid = () => {
 
+    const { isOpen, open, close } = useOpen();
+    const [emojis, setEmojis] = useState<EmojisObjects[]>([]);
+
     const fetchEmojis = async () => {
-        const rows = await window.ipcRenderer.invoke("db-query", "SELECT * FROM Emojis")
+        const rows = await window.ipcRenderer.invoke("db-query", "SELECT ROWID, keyword, emoji FROM Emojis")
         setEmojis(rows)
     }
 
@@ -17,31 +21,20 @@ export const EmojiGrid = () => {
         fetchEmojis()
     }, [])
 
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [emojis, setEmojis] = useState<EmojisObjects[]>([])
-
-    const openModal = () => {
-        setIsOpen(true)
-    }
-
-    const closeModal = () => {
-        setIsOpen(false)
-    }
-
     return (
         <>
             <div className='main-content'>
-                <ActionButton onClick={openModal}/>
+                <ActionButton onClick={open}/>
                 {
                    (emojis.length > 0) ? emojis.map( (emojiObject) => (
-                    <EmojiButton emoji={emojiObject.emoji} name={emojiObject.keyword} delimiter=":"/> 
+                    <EmojiButton emoji={emojiObject.emoji} name={emojiObject.keyword} delimiter=":" id={emojiObject.rowid}/> 
                    )) : <p>No emojis yet, add some!</p>
                 }
 
             </div>
 
-            <Modal open={isOpen} close={closeModal} key={new Date().getTime()}>
-                <AddModal closeModal={closeModal}/>
+            <Modal open={isOpen} close={close} key={new Date().getTime()}>
+                <AddModal closeModal={close}/>
             </Modal>
         </>
     )

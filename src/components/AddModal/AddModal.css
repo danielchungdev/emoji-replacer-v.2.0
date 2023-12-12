@@ -14,7 +14,7 @@
     min-width: 100px;
     width: auto;
     color: black;
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 10px;
     display: block;
     text-align: center;
@@ -65,4 +65,10 @@
 .modal-button:hover{
     background-color: rgba(201, 200, 200, 0.418);
     color: #474747;
+}
+
+.modal-title{
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
 }

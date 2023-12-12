@@ -17,7 +17,8 @@
     /* Custom */
     "types": ["node"],
     "paths": {
-      "@components*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/lib/hooks/*"]
     },
 
     /* Linting */

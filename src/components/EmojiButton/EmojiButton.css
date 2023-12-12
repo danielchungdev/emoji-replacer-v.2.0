@@ -8,6 +8,7 @@
 .emoji-button-container{
     position: relative;
     display: grid;
+    grid-template-rows: 20% 60% 20%;
     place-content: center;
     height: 200px;
     width: 200px;
@@ -15,30 +16,50 @@
     text-align: center;
     border-radius: 7px;
     transition: all 0.5s ease-in-out;
+    padding: 10px;
 }
 
 .emoji-button-container:hover{
-    background-color: #F5F5F5;
     cursor: pointer;
 }
 
-.emoji-button-container:hover .emoji-button-title{
+.emoji-edit-mode{
+    background-color: #F5F5F5;
+}
+
+.emoji-edit-mode .emoji-button-title{
     color: #131313;
 }
+
 
 .emoji-button-icon{
     font-size: 200%;
     margin: 0;
-    padding: 0;    
+    padding: 0;
+}
+
+.emoji-edit-mode .emoji-button-icon{
+    color: black;
 }
 
 .emoji-button-content{
     margin-top: auto;
     margin-bottom: auto;
+    width: 200px;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.emoji-button-content input{
+    display: block;
+    padding: 5px;
+    margin-top: 5px;
+    min-width: 50px;
 }
 
 .x{
-    display: none;
+    display: grid;
+    place-content: center;
     background-color: rgb(252, 99, 99);
     border-radius: 40px;
     height: 25px;
@@ -54,11 +75,50 @@
     margin: auto;
 }
 
-.emoji-button-container:hover .x{
-    display: grid;
-    place-content: center;
+.emoji-edit-button{
+    display: flex;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    justify-content: end;
+    width: 100%;
+    gap: 5px;
 }
-
+ 
 .x:hover{
     background-color: rgb(250, 39, 39);
+}
+
+.emoji-button-edit-mode{
+    background-color: #F5F5F5;
+    color: #131313;
+    text-align: center;
+    font-size: 1.4rem;
+    max-width: 180px;
+    border: 1px rgb(41, 41, 41) solid;
+    border-radius: 10px;
+}
+
+.name-input{
+    margin: 0 5px;
+}
+
+.unique-input{
+    margin: auto;
+}
+
+.emoji-edit-title{
+    color: rgb(19, 19, 19);
+    margin: 0;
+    padding: 0;
+}
+
+.emoji-name-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-name-edit span{
+    color: rgb(19, 19, 19);
+    font-size: 1.5rem;
 }
