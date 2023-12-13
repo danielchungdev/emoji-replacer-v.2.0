@@ -24,13 +24,12 @@ export const EmojiGrid = () => {
     return (
         <>
             <div className='main-content'>
-                <ActionButton onClick={open}/>
+                <ActionButton onClick={open} key={-1}/>
                 {
                    (emojis.length > 0) ? emojis.map( (emojiObject) => (
-                    <EmojiButton emoji={emojiObject.emoji} name={emojiObject.keyword} delimiter=":" id={emojiObject.rowid}/> 
+                    <EmojiButton emoji={emojiObject.emoji} name={emojiObject.keyword} delimiter=":" id={emojiObject.rowid} refetch={fetchEmojis}/> 
                    )) : <p>No emojis yet, add some!</p>
                 }
-
             </div>
 
             <Modal open={isOpen} close={close} key={new Date().getTime()}>

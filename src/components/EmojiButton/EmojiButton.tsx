@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useState } from "react"
 import { useOpen } from "@hooks/useOpen"
 
-export const EmojiButton: FC<Props> = ({ id, emoji, name, delimiter }) => {
+export const EmojiButton: FC<Props> = ({ id, emoji, name, delimiter, refetch }) => {
 
     const { isOpen: editMode, open, close } = useOpen();
 
@@ -27,11 +27,18 @@ export const EmojiButton: FC<Props> = ({ id, emoji, name, delimiter }) => {
         close()
     }
 
+    const deleteToDatabase = async() => {
+        const sql = `DELETE FROM Emojis WHERE rowid = ${id}`
+        await window.ipcRenderer.invoke("db-query", sql)
+        close()
+        refetch()
+    }
+
     return (
         <div key={id} onClick={editMode ? undefined : open}>
             <div className={`emoji-button-container ${editMode && "emoji-edit-mode"}`}>
                 {
-                    editMode && (<div className="x">
+                    editMode && (<div className="x" onClick={deleteToDatabase}>
                                     <XMarkIcon className="trash-icon" />
                                 </div>)
                 }
