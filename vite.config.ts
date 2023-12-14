@@ -23,11 +23,19 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [{ 
-      find: '@components', replacement: path.resolve(__dirname, 'src/components/') 
-    }, 
-    {
-      find: '@hooks', replacement: path.resolve(__dirname, 'src/lib/hooks/')
-    }],
+    alias: [
+      { 
+        find: '@components', replacement: path.resolve(__dirname, 'src/components/') 
+      }, 
+      {
+        find: '@hooks', replacement: path.resolve(__dirname, 'src/lib/hooks/')
+      },
+      {
+        find: '@helpers', replacement: path.resolve(__dirname, 'src/lib/helpers/')
+      },
+      {
+        find: '@enums', replacement: path.resolve(__dirname, 'src/lib/constants/enums/')
+      }
+    ],
   },
 })

@@ -1,0 +1,8 @@
+
+export enum Errors{
+    SQLITE_BUSY,
+    SQLITE_CONSTRAINT,
+    SQLITE_ERROR,
+    DUPLICATE,
+    TOO_SHORT
+}

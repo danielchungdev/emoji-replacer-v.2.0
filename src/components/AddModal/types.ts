@@ -1,3 +1,4 @@
 export interface Props{
-    closeModal: () => void
+    closeModal: () => void,
+    refetch: () => void,
 }

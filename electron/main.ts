@@ -6,8 +6,10 @@ const sqlite3 = require('sqlite3')
 const db = new sqlite3.Database('./db/emojireplacer.db')
 
 db.serialize(() => {
-  db.run("CREATE TABLE IF NOT EXISTS Settings (name, value)");
-  db.run("CREATE TABLE IF NOT EXISTS Emojis (keyword, emoji)");
+  db.run("CREATE TABLE IF NOT EXISTS Settings (id integer PRIMARY KEY AUTOINCREMENT, name, value)");
+  db.run("CREATE TABLE IF NOT EXISTS Emojis (id integer PRIMARY KEY AUTOINCREMENT, keyword UNIQUE, emoji)");
+  // db.run("INSERT INTO Settings (name, value) VALUES ('Delimiter', ':')")
+  // db.run("INSERT INTO Settings (name, value) VALUES ('FirstRun', 0)")
 });
 
 // The built directory structure
@@ -56,7 +58,7 @@ function createWindow() {
 }
 
 if(process.argv[1] === '--squirrel-firstrun'){
-  //Instlal python pip packages.
+  //Install python pip packages.
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -93,6 +95,9 @@ app.on('ready', async () => {
 ipcMain.handle('db-query', async (event, sqlQuery) => {
   return new Promise(res => {
       db.all(sqlQuery, (err: any, rows: unknown) => {
+        if (err){
+          res(err.code)
+        }
         res(rows);
       });
   });

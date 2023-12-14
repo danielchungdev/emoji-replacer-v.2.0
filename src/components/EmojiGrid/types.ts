@@ -1,6 +1,6 @@
 
 export interface EmojisObjects{
-    rowid: number,
+    id: number,
     emoji: string,
     keyword: string,
 }
