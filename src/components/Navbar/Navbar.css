@@ -11,4 +11,19 @@
 
 .navbar-option{
     width: 40px;
+    margin: 0;
+}
+
+.options-outer-bar{
+    display: flex;
+    justify-content: center;
+    background-color: #242424;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.options-outer-bar:hover{
+    background-color: #131313;
+    cursor: pointer;
 }
